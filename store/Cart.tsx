@@ -1,11 +1,12 @@
 import React, { Dispatch, useContext, useReducer } from 'react'
 export type TProduct = {
-    id: string
+    id?: string
     name: string
     description: string
     price: number
-    image: string,
-    category: string
+    image: string | object,
+    category?: string,
+    category_id?:string,
 }
 export type CartItemType = TProduct & { quantity: number }
 

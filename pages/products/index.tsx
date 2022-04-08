@@ -25,12 +25,16 @@ const RowItemProduct = ({ product }:{ product: TProduct }) => {
 
 const Products = () => {
     const [ products, setProducts ] = useState([]);
+    const refreshProducts = async () => {
+        const products = await getProducts();
+        setProducts(products);
+    }
     useEffect(()=> {
         (async () => {
-            const products = await getProducts();
-            setProducts(products);
+            await refreshProducts()
         })();
     }, []);
+
     return (
         <div className='row'>
             <Layout showFilter={false}>
@@ -41,7 +45,7 @@ const Products = () => {
                 </div>
                 <div className='row'>
                     <div className='col'>
-                        <ModalNewProduct/>
+                        <ModalNewProduct refreshProducts={refreshProducts}/>
                     </div>
                 </div>
                 <div className="row">

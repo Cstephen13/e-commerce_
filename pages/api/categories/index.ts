@@ -8,7 +8,7 @@ const categories = async (req: NextApiRequest, res: ServerResponse) => {
     switch (req.method){
         case 'GET':
             try {
-                const products = await axios.get('http://localhost:8000/api/v1.0/categories/categories');
+                const products = await axios.get('http://localhost:8000/api/v1.0/categories/categories/');
                 res.statusCode = 200
                 res.setHeader('Content-Type', 'application/json')
                 res.setHeader('Access-Control-Allow-Origin', '*')
@@ -24,7 +24,7 @@ const categories = async (req: NextApiRequest, res: ServerResponse) => {
         case 'POST':
             try {
                 const params = req.body;
-                const products = await axios.post('http://localhost:8000/api/v1.0/categories/categories', params);
+                const products = await axios.post('http://localhost:8000/api/v1.0/categories/categories/', params);
                 res.statusCode = 200
                 res.setHeader('Content-Type', 'application/json')
                 res.setHeader('Access-Control-Allow-Origin', '*')

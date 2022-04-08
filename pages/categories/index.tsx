@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/Layouts/Layout";
 import {getCategories} from "../../components/Filter/Filter";
+import ModalNewCategory from "../../components/Categories/ModalNewCategory";
 
 const Categories = () => {
     const [ categories, setCategories ] = useState([]);
+    const refreshCategories = async () => {
+        const categories = await getCategories();
+        setCategories(categories.data);
+    }
     useEffect(()=> {
         (async () => {
-            const categories = await getCategories();
-            setCategories(categories.data);
+            await refreshCategories();
         })();
     }, []);
     return (
@@ -20,7 +24,7 @@ const Categories = () => {
                 </div>
                 <div className='row'>
                      <div className='col'>
-                         <button className='btn btn-success'><i className='fas fa-plus'/> Nueva Categoría</button>
+                         <ModalNewCategory refreshCategories={refreshCategories}/>
                      </div>
                 </div>
                 <div className="row">

@@ -2,12 +2,13 @@ import { ServerResponse } from "http";
 import enablePublicAccess from 'cors'
 import axios from "axios";
 import {NextApiRequest} from "next";
+import {URL_PRODUCTS} from "../../../utils/utils";
 const products = async (req: NextApiRequest, res: ServerResponse) => {
     await enablePublicAccess(req, res)
     switch (req.method){
         case 'GET':
             try {
-                const products = await axios.get('http://localhost:8000/api/v1.0/products/products/');
+                const products = await axios.get(URL_PRODUCTS);
                 res.statusCode = 200
                 res.setHeader('Content-Type', 'application/json')
                 res.setHeader('Access-Control-Allow-Origin', '*')
@@ -25,7 +26,7 @@ const products = async (req: NextApiRequest, res: ServerResponse) => {
             try {
                 const params = req.body;
                 try {
-                    const products = await axios.post('http://localhost:8000/api/v1.0/products/products/', params, {
+                    const products = await axios.post(URL_PRODUCTS, params, {
                         headers: {
                             "Content-Type": "multipart/form-data",
                         },

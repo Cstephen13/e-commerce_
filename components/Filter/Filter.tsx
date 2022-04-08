@@ -19,6 +19,7 @@ const Filter = () => {
                 <div className="card-body">
                     <h5 className="card-title">Filtros</h5>
                     <select className="form-select" aria-label="Default select example">
+                        <option/>
                         {categories.map((element, index)=> (
                             <option key={`categorie-${index}`} value={element.id}>{element.name}</option>
                         ))}

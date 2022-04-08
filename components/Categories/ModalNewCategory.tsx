@@ -9,7 +9,6 @@ const ModalNewCategory = ({ refreshCategories }) => {
     });
 
     const saveProduct = async () => {
-        //const category = await axios.post('http://localhost:8000/api/v1.0/categories/categories', params);
         const { data } = await axios.post('/api/categories', categoryObject);
         refreshCategories();
         handleClose();

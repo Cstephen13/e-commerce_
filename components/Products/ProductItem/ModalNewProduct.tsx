@@ -3,6 +3,7 @@ import {Button, Form, Modal} from "react-bootstrap";
 import {getCategories} from "../../Filter/Filter";
 import {TProduct} from "../../../store/Cart";
 import axios from "axios";
+import {SERVER_BASE_API_URL, URL_PRODUCTS} from "../../../utils/utils";
 
 const ModalNewProduct = ({ refreshProducts }) => {
     const [show, setShow] = useState(false);
@@ -32,7 +33,7 @@ const ModalNewProduct = ({ refreshProducts }) => {
                 form.append(key, product[key]);
             }
         });
-        const products = await axios.post('http://localhost:8000/api/v1.0/products/products/', form, {
+        const products = await axios.post(URL_PRODUCTS, form, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
@@ -46,7 +47,7 @@ const ModalNewProduct = ({ refreshProducts }) => {
     return (
         <>
             <Button variant="success" onClick={handleShow}>
-                Nuevo Producto
+                <i className='fas fa-plus'/> Nuevo Producto
             </Button>
 
             <Modal show={show} onHide={handleClose}>

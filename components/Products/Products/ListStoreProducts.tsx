@@ -1,34 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import ProductItem from "../ProductItem/ProductItem";
+import {useCart, useCartMutations} from "../../../store/Cart";
 
+export const getProducts = async () => {
+    const { data } = await axios.get('/api/products');
+    return data.data;
+}
 
 const ListStoreProducts = () => {
-    const card = () => {
-        let cards = []
-        for (let i = 0; i < 10; i++){
-            cards.push((
-                <div className="col-4">
-                    <div className="card mb-3" >
-                        <img src="..." className="card-img-top" alt="..."/>
-                        <div className="card-body">
-                            <p className="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button className="btn btn-link text-decoration-none float-right">
-                                <i className="fas fa-cart-plus"/>
-                            </button>
-                        </div>
-                        <div className="card-footer">
-                            <h6 >dsndkjnds</h6>
+    const [ products, setProducts ] = useState([]);
+    const { itemsById, count } = useCart()
+    const { removeFromCart, addToCart } = useCartMutations();
 
-                        </div>
-                    </div>
-                </div>
-            ))
-        }
-        return cards
-    }
+    useEffect(()=> {
+        (async () => {
+            const products = await getProducts();
+            setProducts(products);
+        })();
+    }, []);
+
     return (
         <div className="row">
-            { card() }
+            { products.length > 0 ? (products.map((product, index) => {
+                return (
+                    <ProductItem product={ product } key={`product-${index}`}
+                                 addToCart={addToCart}
+                                 catItem={itemsById[product.id]}
+                                 removeFromCart={ removeFromCart } />
+                );
+            })) : null }
         </div>
     );
 }

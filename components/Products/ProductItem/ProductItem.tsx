@@ -1,17 +1,33 @@
 import React from "react";
 import {Button, Card} from "react-bootstrap";
+import {TProduct} from "../../../store/Cart";
+import {BadgeCart} from "../../NavBar/CartButton";
 
-const ProductItem = () => {
+const ProductItem = ({ product, catItem,removeFromCart, addToCart }: {
+    product:TProduct, catItem?: TProduct & { quantity: number },
+    removeFromCart:any, addToCart:any
+}) => {
+    const add = () => {
+        addToCart(product)
+    }
     return (
-        <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-    </Card>)
+        <div className="col-4" >
+            <div className="card mb-3" >
+                <img src={product.image} className="card-img-top" alt="..."/>
+                <div className="card-body">
+                    <p className="card-text">{ product.description }</p>
+                    <button onClick={add} className="btn btn-link text-decoration-none float-right">
+                        <i className="fas fa-cart-plus"/>
+                        {catItem && <BadgeCart number={ catItem.quantity }/>}
+                    </button>
+                </div>
+                <div className="card-footer">
+                    <h6 >{ product.name } | ${ product.price.toLocaleString('es-CO') }</h6>
+                    <span className="badge rounded-pill bg-primary">{ product.category }</span>
+                </div>
+            </div>
+        </div>
+    )
 }
+
+export default ProductItem

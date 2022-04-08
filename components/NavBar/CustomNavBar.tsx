@@ -1,7 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import ButtonCartShopping from "../ButtonCartShopping/ButtonCartShopping";
+import CartButton from "./CartButton";
+import { useCart } from "../../store/Cart";
 const CustomNavBar = () => {
+    const { count: cartCount } = useCart()
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -26,7 +28,7 @@ const CustomNavBar = () => {
                             </Link>
                         </li>
                     </ul>
-                    <ButtonCartShopping />
+                    <CartButton cartCount={ cartCount }/>
                     <button type="submit" className="btn btn-primary">Iniciar sesión</button>
                 </div>
             </div>

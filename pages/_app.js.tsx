@@ -2,15 +2,13 @@ import { AppProps } from 'next/app'
 import '../global.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css'
+import CartProvider from "../store/Cart";
 
 const App = ({ Component, pageProps }: AppProps) => {
-    // Aditional props
-    // Aditional layout
-    // Manejar errores - componentDidCatch
     return (
-        <>
+        <CartProvider>
             <Component {...pageProps} />
-        </>
+        </CartProvider>
     )
 }
 

@@ -1,25 +1,6 @@
 import React, { Dispatch, useContext, useReducer } from 'react'
-export type TProduct = {
-    id?: string
-    name: string
-    description: string
-    price: number
-    image: string,
-    category?: string,
-    category_id?:string,
-}
+import {CartAction, CartItemType, CartState, TProduct} from "../models/model";
 
-export type CartItemType = TProduct & { quantity: number }
-
-export type CartState = {
-    [key: string]: CartItemType
-}
-
-export type CartAction = {
-    type: 'add' | 'remove'
-    item: TProduct
-    quantity?: number
-}
 
 const defaultState = {} as CartState
 

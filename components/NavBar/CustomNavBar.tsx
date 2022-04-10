@@ -33,6 +33,11 @@ const CustomNavBar = () => {
                                     <a className="nav-link" aria-current="page">Categorías</a>
                                 </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link href={"/invoices"}>
+                                    <a className="nav-link" aria-current="page">Compras realizadas</a>
+                                </Link>
+                            </li>
                         </ul>
                     ) : null }
                     <CartButton cartCount={ cartCount }/>

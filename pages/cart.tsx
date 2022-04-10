@@ -1,9 +1,10 @@
 import React from "react";
 import Layout from "../components/Layouts/Layout";
-import {TProduct, useCart, useCartMutations} from "../store/Cart";
+import { useCart, useCartMutations} from "../store/Cart";
 import Link from "next/link";
 import SummarySale from "../components/Cart/SummarySale";
 import axios from "axios";
+import {TProduct} from "../models/model";
 
 const CardProductSummary = ({ product, removeFromCart }:{ product: TProduct & { quantity:number }, removeFromCart: any }) => {
     return (

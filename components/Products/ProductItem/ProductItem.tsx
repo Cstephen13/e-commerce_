@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Card} from "react-bootstrap";
-import {TProduct} from "../../../store/Cart";
+import { TProduct } from "../../../models/model";
 import {BadgeCart} from "../../NavBar/CartButton";
 
 const ProductItem = ({ product, catItem,removeFromCart, addToCart }: {

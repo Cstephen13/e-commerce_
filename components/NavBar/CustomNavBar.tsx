@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react"
 
 const CustomNavBar = () => {
     const { count: cartCount } = useCart();
-    const { data: session } = useSession();
+    const session  = useSession();
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -21,7 +21,7 @@ const CustomNavBar = () => {
                     <span className="navbar-toggler-icon"/>
                 </button>
                 <div className="collapse navbar-collapse">
-                    {!session ? (
+                    {!session?.data ? (
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <Link href={"/products"}>

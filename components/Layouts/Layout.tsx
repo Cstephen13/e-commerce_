@@ -11,7 +11,7 @@ type LayoutProps = {
 }
 const Layout = ({ children, showFilter = true} : LayoutProps) => {
     return (
-        <>
+        <div style={{ backgroundImage: 'url("/back.webp")', backgroundColor: '#6610f2' }} className='vh-100'>
             <CustomNavBar />
             <div className="container-fluid">
                 <div className="row">
@@ -26,7 +26,7 @@ const Layout = ({ children, showFilter = true} : LayoutProps) => {
                 </div>
             </div>
             <Footer/>
-        </>
+        </div>
     );
 }
 
